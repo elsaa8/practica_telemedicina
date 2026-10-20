@@ -1,36 +1,59 @@
+```javascript
 module.exports = function (app) {
 
-    var conexion = require("../conexion_mysql.js")
+    const supabase = require("../conexion_supabase.js");
 
-    app.put("/api/gestores/:id", function (req, res) {
+    app.put("/api/gestores/:id", async function (req, res) {
 
-        let datosNuevos = req.body; //OBJETOACTUALIZAR
+        let datosNuevos = req.body;
         let id = req.params.id;
 
-        //preguntamos a la BD si alguien ya tiene ese login
-        let sqlLogin = "SELECT id FROM gestores WHERE login = ? AND id != ?";
-        let paramsLogin = [datosNuevos.login, id];
-        conexion.query(sqlLogin,paramsLogin, function(err, gestores){
-            if (err) {
-                return res.status(500).json({ mensaje: "Error al comprobar el login" });
-            }
-            else if(gestores.length != 0){
-                return res.status(404).json({ mensaje: "Otro gestor ya tiene ese Login" });
-            }else{
-                //si nadie tiene el mismo login actualizamos
-                let sqlActualizacion = "UPDATE gestores SET nombre = ?, apellidos = ?, login = ? WHERE id = ?;"
-                let paramsActualizacion = [datosNuevos.nombre, datosNuevos.apellidos, datosNuevos.login, id];
-                conexion.query(sqlActualizacion,paramsActualizacion,function(err, respuesta){
-                    if(err){
-                        res.status(500).json("Error al realizar la actualización del gestor");
-                    }else if(respuesta.affectedRows == 0){
-                        res.status(404).json("Gestor no encontrado");
-                    }else{
-                        res.status(200).json("Gestor actualizado");
-                    }
-                });
-            }
-        });
+        // Comprobamos si otro gestor ya tiene ese login
+        const { data: gestores, error: errorLogin } = await supabase
+            .from("gestores")
+            .select("id")
+            .eq("login", datosNuevos.login)
+            .neq("id", id);
+
+        if (errorLogin) {
+            return res.status(500).json({
+                mensaje: "Error al comprobar el login"
+            });
+        }
+
+        if (gestores.length !== 0) {
+            return res.status(404).json({
+                mensaje: "Otro gestor ya tiene ese Login"
+            });
+        }
+
+        // Si nadie tiene ese login, actualizamos el gestor
+        const { data: gestorActualizado, error: errorActualizacion } = await supabase
+            .from("gestores")
+            .update({
+                nombre: datosNuevos.nombre,
+                apellidos: datosNuevos.apellidos,
+                login: datosNuevos.login
+            })
+            .eq("id", id)
+            .select();
+
+        if (errorActualizacion) {
+            console.log("Error al actualizar el gestor", errorActualizacion);
+
+            return res.status(500).json({
+                mensaje: "Error al realizar la actualización del gestor"
+            });
+        }
+
+        if (!gestorActualizado || gestorActualizado.length === 0) {
+            return res.status(404).json({
+                mensaje: "Gestor no encontrado"
+            });
+        }
+
+        res.status(200).json("Gestor actualizado");
     });
 
 };
+```
