@@ -1,4 +1,4 @@
-```javascript
+
 module.exports = function (app) {
 
     const supabase = require("../conexion_supabase.js");
@@ -260,10 +260,4 @@ module.exports = function (app) {
     }
 
 };
-```
-            return callback(nombres);
-        }
-    });
-}
-//#endregion
-};
+
