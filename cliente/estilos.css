@@ -1,0 +1,277 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0 20px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.seccion {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.activa {
+    display: block;
+}
+
+input, select, button {
+    padding: 8px 10px;
+    margin: 5px 0 15px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    max-width: 100%;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+label {
+    font-weight: bold;
+}
+
+#busquedaRecurso select, #busquedaRecurso input {
+    width: 200px;
+}
+
+#busquedaRecurso button {
+    margin-top: 10px;
+}
+
+#login, #registroGestor {
+    max-width: 400px;
+}
+
+#inicio, #recursos {
+    max-width: 900px;
+}
+
+span#nombreUsuario {
+    font-weight: bold;
+    color: #2980b9;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Tablet y móvil */
+@media (max-width: 768px) {
+    body {
+        padding: 0 12px;
+    }
+
+    .seccion {
+        padding: 15px;
+        margin: 12px auto;
+    }
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+    body {
+        padding: 0 8px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    /* Formularios a todo el ancho; 16px evita el zoom automático de iOS */
+    input, select, button,
+    #busquedaRecurso select,
+    #busquedaRecurso input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px;
+    }
+
+    /* Tablas en formato "tarjeta": cada fila es un bloque */
+    table, thead, tbody, tr, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    table, th, td {
+        border: none;
+    }
+
+    /* La cabecera se oculta (los nombres salen en cada celda con data-label) */
+    thead tr {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        background-color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        text-align: right;
+        padding: 10px 12px;
+        border-bottom: 1px solid #eee;
+        word-break: break-word;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: left;
+        flex-shrink: 0;
+    }
+}
+
+/*medallitas en el ranking */
+/* Ocultar el número en las cinco primeras posiciones */
+.posicion-1,
+.posicion-2,
+.posicion-3,
+.posicion-4,
+.posicion-5 {
+    font-size: 0;
+}
+
+/* Mostrar el icono */
+.posicion-1::before,
+.posicion-2::before,
+.posicion-3::before,
+.posicion-4::before,
+.posicion-5::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 20px;
+}
+
+/* Oro */
+.posicion-1::before {
+    content: "\f091";
+    color: #FFD700;
+}
+
+/* Plata */
+.posicion-2::before {
+    content: "\f091";
+    color: #C0C0C0;
+}
+
+/* Bronce */
+.posicion-3::before {
+    content: "\f091";
+    color: #CD7F32;
+}
+
+/* Cuarto puesto */
+.posicion-4::before {
+    content: "\f091";
+    color: #555;
+}
+
+/* Quinto puesto */
+.posicion-5::before {
+    content: "\f091";
+    color: #777;
+}
+
+/* ---------- RANKING: centrado ---------- */
+#tablaRanking th,
+#tablaRanking td {
+    text-align: center;
+}
+
+/* Que el trofeo quede centrado en su celda */
+#tablaRanking td[class^="posicion-"] {
+    text-align: center;
+}
+
+/* ---------- RANKING: filas del podio ---------- */
+/* Oro */
+#tablaRanking tr.fila-1 {
+    background-color: #FFF3B0;
+    font-weight: bold;
+}
+
+/* Plata */
+#tablaRanking tr.fila-2 {
+    background-color: #E6E6E6;
+    font-weight: bold;
+}
+
+/* Cobre */
+#tablaRanking tr.fila-3 {
+    background-color: #F3D2B3;
+    font-weight: bold;
+}

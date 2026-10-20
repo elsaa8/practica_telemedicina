@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inicio sesión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+<style>
+    .seccion{display: none;}
+    .activa{display: block;}
+</style>
+</head>
+
+<body>
+    <H1>Aplicación gestor</H1>
+
+    <div id="login" class="seccion activa">
+        <h2>Acceso</h2>
+
+        Usuario: <input id="usuario" type="text" /><br>
+        Contraseña: <input id="contrasenya" type="password" /><br>
+        <button onclick="login()">Entrar</button>
+        <button onclick="irRegistro()">Registrarse</button>
+    </div>
+
+    <div id="inicio" class="seccion">
+        <h2>Inicio</h2>
+
+        <p>Bienvenido <span id="nombreUsuario"></span></p> <button onclick=irRegistro()>Editar datos</button>
+
+        <div id="busquedaRecurso">
+            <h2>Búsqueda de recursos</h2>
+
+            <label for="categoria">Categoría:</label>
+                <select id="categoriaInicio">
+                    <option value="todos">Todos</option>
+                </select><br/>
+
+            <label for="modelo">Modelo:</label>
+                <select id="modeloInicio">
+                    <option value="todos">Todos</option>
+                </select><br/>
+
+            <label for="ubicacion">Ubicación:</label>
+                <select id="ubicacionInicio">
+                    <option value="todos">Todos</option>
+                </select><br/>
+
+            <label for="estado">Estado:</label>
+                <select id="estadoInicio">
+                    <option value="todos">Todos</option>
+                    <option value="0">Operativo</option>
+                    <option value="1">De baja o defectuoso</option>
+                    <option value="2">En mantenimiento</option>
+                </select><br/><br/>
+
+            <button onclick="buscar()">Buscar</button>
+        </div>
+
+        <h2>Recursos</h2>
+        
+        <table id="tablaRecursos" border="1">
+            <thead>
+                <tr>
+                    <th>N. Serie</th>
+                    <th>Categoría</th>
+                    <th>Modelo</th>
+                    <th>Ubicación</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo_inicio">
+            
+            </tbody>
+
+        </table>
+
+    <button onclick="crearRecurso()">Añadir Recurso</button>
+    <button onclick="salir()">Salir</button>
+
+    <h2>Ranking de reservas por área médica</h2>
+            <table id="tablaRanking">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Área Médica</th>
+                        <th>Reservas Totales</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo_ranking">
+                </tbody>
+            </table>
+
+    <button onclick="enviarMensaje()">Enviar mis datos</button>
+    
+     <table id="tablaAvisos" border="1">
+            <thead>
+                <tr>
+                    <th>Fecha del aviso</th>
+                    <th>Origen del aviso</th>
+                    <th>Texto</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo_avisos">
+            
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div id="recursos" class="seccion">
+        <h2>Recurso</h2>
+        <h2>Datos recurso </h2>
+
+        <label for="categoria">Categoría:</label>
+            <select id="categoriaRecursos">
+        </select><br/>
+
+        <label for="modelo">Modelo:</label>
+            <select id="modeloRecursos">
+        </select><br/>
+
+        <label>Núm. Serie:</label>
+            <input id="numero_serieRecursos" type="text"><br/>
+
+        <label for="ubicacion">Ubicación:</label>
+            <select id="ubicacionRecursos">
+        </select><br/>
+
+        <label for="estado">Estado:</label>
+            <select id="estadoRecursos">
+                <option value="0">Operativo</option>
+                <option value="1">De baja o defectuoso</option>
+                <option value="2">En mantenimiento</option>
+        </select><br/><br/>
+
+        <button onclick="guardar()">Guardar</button>
+
+        <h2>Reservas</h2><br/>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Sanitario</th>
+                    <th>H.Estim</th>
+                    <th>F.Peticion</th>
+                    <th>F.Inicio</th>
+                    <th>F.Fin</th>
+                </tr>
+            </thead>
+            <tbody id="tablaReservas">
+            </tbody>
+
+        </table>
+
+
+        <h2>Reseñas</h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Sanitario</th>
+                    <th>Valoracion</th>
+                    <th>Comentario</th>
+                </tr>
+            </thead>
+            <tbody id="tablaResenyas">
+            
+            </tbody>
+
+        </table>
+
+        <button onclick="cambiarSeccion('inicio')">Volver al listado</button>
+    </div>
+
+    <div id="registroGestor" class="seccion">
+        <h2 id="tituloRegistro">Datos gestor</h2>
+
+        <div id="datosRegistro">
+            <label for="nombreRegistro">Nombre:</label>
+            <input id="nombreRegistro" type="text"><br>
+
+            <label for="apellidosRegistro">Apellidos:</label>
+            <input id="apellidosRegistro" type="text"><br>
+
+            <label for="loginRegistro">Login:</label>
+            <input id="loginRegistro" type="text"><br>
+
+            <div id="grupoContrasenya">
+                <label for="contrasenyaRegistro">Contraseña:</label>
+                <input id="contrasenyaRegistro" type="password"><br>
+            </div>
+
+            <button onclick="cambiarDatos()">Guardar</button>
+            <button onclick=cancelarRegistro()>cancelar</button>
+        </div>
+        <br>
+    </div>
+
+    <script src="rest.js"></script>
+    <script src="main.js"></script>
+    <script src="/ws/main.js"></script>
+</body>
+
+</html>

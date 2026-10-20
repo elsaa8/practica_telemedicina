@@ -1,0 +1,515 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Quicksand:wght@400;600&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe4ec, #ffd6e8, #ffeef5);
+    background-attachment: fixed;
+    color: #5a4a4a;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* TÍTULOS */
+h1 {
+    background: linear-gradient(90deg, #ffb6c1, #ff9bb3);
+    color: white;
+    padding: 25px;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.6);
+}
+
+h2 {
+    color: #d46a92;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* SECCIONES */
+.seccion {
+    display: none;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.activa {
+    display: block;
+}
+
+/* INPUTS */
+input, select, textarea {
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 8px;
+    background-color: #fff0f5;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 70%;
+    max-width: 300px;
+    box-shadow: inset 0 2px 5px rgba(255, 182, 193, 0.3);
+}
+
+input:focus, textarea:focus, select:focus {
+    box-shadow: 0 0 10px #ffb6c1;
+    transform: scale(1.03);
+}
+
+/* BOTONES */
+button {
+    background: linear-gradient(135deg, #ff9bb3, #ff6f9f);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 18px;
+    margin: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.5);
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+}
+
+/* TABLAS */
+table {
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #ff9bb3;
+    background-color: #fff0f5;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(255, 182, 193, 0.4);
+    width: 100%;
+    table-layout: auto;
+}
+
+th {
+    background: linear-gradient(90deg, #ffb6c1, #ff9bb3);
+    color: white;
+    padding: 5px;
+}
+
+td {
+    padding: 5px;
+    border-bottom: 1px solid #ffd6e8;
+}
+
+@media (min-width: 601px) {
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+}
+
+tr:hover {
+    background-color: #ffe4ec;
+    transition: 0.3s;
+}
+
+/* TARJETAS */
+#login, #inicio, #registroSanitario, #editarSanitario, #resenya {
+    background: rgba(255, 255, 255, 0.7);
+    margin: 40px auto;
+    width: auto;
+    max-width: none;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Tablet y móvil */
+@media (max-width: 768px) {
+    h1 {
+        padding: 18px 12px;
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+    }
+
+    .seccion {
+        padding: 12px;
+    }
+
+    #login, #inicio, #registroSanitario, #editarSanitario, #resenya {
+        margin: 20px 10px;
+        padding: 15px;
+        border-radius: 20px;
+    }
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+    }
+
+    /* Formularios a todo el ancho; 16px evita el zoom automático de iOS */
+    input, select, textarea {
+        width: 100%;
+        max-width: 100%;
+        margin: 6px 0;
+        font-size: 16px;
+    }
+
+    /* Evita que el "scale" del focus provoque scroll horizontal */
+    input:focus, textarea:focus, select:focus {
+        transform: none;
+    }
+
+    button {
+        width: 100%;
+        margin: 6px 0;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    button:hover {
+        transform: none;
+    }
+
+    /* Tablas en formato "tarjeta": cada fila es un bloque */
+    table, thead, tbody, tr, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    table {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    /* La cabecera se oculta (los nombres salen en cada celda con data-label) */
+    thead tr {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+
+    tr {
+        background-color: #fff0f5;
+        border: 2px solid #ff9bb3;
+        border-radius: 15px;
+        margin-bottom: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+        text-align: left;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        text-align: right;
+        padding: 10px 14px;
+        word-break: break-word;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #d46a92;
+        text-align: left;
+        flex-shrink: 0;
+    }
+
+    /* Botones dentro de la tabla (editar/borrar): que no ocupen todo el ancho */
+    td button {
+        width: auto;
+        margin: 0 0 0 6px;
+        padding: 8px 14px;
+    }
+}@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Quicksand:wght@400;600&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe4ec, #ffd6e8, #ffeef5);
+    background-attachment: fixed;
+    color: #5a4a4a;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* TÍTULOS */
+h1 {
+    background: linear-gradient(90deg, #ffb6c1, #ff9bb3);
+    color: white;
+    padding: 25px;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.6);
+}
+
+h2 {
+    color: #d46a92;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* SECCIONES */
+.seccion {
+    display: none;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.activa {
+    display: block;
+}
+
+/* INPUTS */
+input, select, textarea {
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 8px;
+    background-color: #fff0f5;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 70%;
+    max-width: 300px;
+    box-shadow: inset 0 2px 5px rgba(255, 182, 193, 0.3);
+}
+
+input:focus, textarea:focus, select:focus {
+    box-shadow: 0 0 10px #ffb6c1;
+    transform: scale(1.03);
+}
+
+/* BOTONES */
+button {
+    background: linear-gradient(135deg, #ff9bb3, #ff6f9f);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 18px;
+    margin: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.5);
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+}
+
+/* TABLAS */
+table {
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #ff9bb3;
+    background-color: #fff0f5;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(255, 182, 193, 0.4);
+    width: 100%;
+    table-layout: auto;
+}
+
+th {
+    background: linear-gradient(90deg, #ffb6c1, #ff9bb3);
+    color: white;
+    padding: 5px;
+}
+
+td {
+    padding: 5px;
+    border-bottom: 1px solid #ffd6e8;
+}
+
+@media (min-width: 601px) {
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+}
+
+tr:hover {
+    background-color: #ffe4ec;
+    transition: 0.3s;
+}
+
+/* TARJETAS */
+#login, #inicio, #registroSanitario, #editarSanitario, #resenya {
+    background: rgba(255, 255, 255, 0.7);
+    margin: 40px auto;
+    width: auto;
+    max-width: none;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Tablet y móvil */
+@media (max-width: 768px) {
+    h1 {
+        padding: 18px 12px;
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+    }
+
+    .seccion {
+        padding: 12px;
+    }
+
+    #login, #inicio, #registroSanitario, #editarSanitario, #resenya {
+        margin: 20px 10px;
+        padding: 15px;
+        border-radius: 20px;
+    }
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+    }
+
+    /* Formularios a todo el ancho; 16px evita el zoom automático de iOS */
+    input, select, textarea {
+        width: 100%;
+        max-width: 100%;
+        margin: 6px 0;
+        font-size: 16px;
+    }
+
+    /* Evita que el "scale" del focus provoque scroll horizontal */
+    input:focus, textarea:focus, select:focus {
+        transform: none;
+    }
+
+    button {
+        width: 100%;
+        margin: 6px 0;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    button:hover {
+        transform: none;
+    }
+
+    /* Tablas en formato "tarjeta": cada fila es un bloque */
+    table, thead, tbody, tr, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    table {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    /* La cabecera se oculta (los nombres salen en cada celda con data-label) */
+    thead tr {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+
+    tr {
+        background-color: #fff0f5;
+        border: 2px solid #ff9bb3;
+        border-radius: 15px;
+        margin-bottom: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+        text-align: left;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        text-align: right;
+        padding: 10px 14px;
+        word-break: break-word;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #d46a92;
+        text-align: left;
+        flex-shrink: 0;
+    }
+
+    /* Botones dentro de la tabla (editar/borrar): que no ocupen todo el ancho */
+    td button {
+        width: auto;
+        margin: 0 0 0 6px;
+        padding: 8px 14px;
+    }
+}
