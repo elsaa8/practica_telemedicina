@@ -1,7 +1,7 @@
 
 module.exports = function (app) {
 
-    const supabase = require("../conexion_supabase.js");
+
 
     app.get("/api/ubicaciones", async function (req, res) {
 
