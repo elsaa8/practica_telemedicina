@@ -14,11 +14,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // que toda la comunicación va a ser en json
 app.use(express.json()); 
 
-// siempre que el usuario meta en el buscador el primer argumento, va a devolver el html de la carpeta cliente
-var path = require("path");
-
-app.use("/appCliente", express.static(path.join(__dirname, "../cliente")));
-app.use("/ws", express.static(path.join(__dirname, "../cliente_ws")));
+app.use("/appCliente", express.static("../cliente"));
+app.use("/ws", express.static("../cliente_ws"));
 
 // Cargo rutas
 
