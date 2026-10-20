@@ -1,5 +1,5 @@
 
-module.exports = function (app) {
+module.exports = function (app,supabase) {
 
     app.get("/api/modelos", async function (req, res) {
 
