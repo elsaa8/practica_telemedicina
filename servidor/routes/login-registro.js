@@ -1,4 +1,4 @@
-```javascript
+
 module.exports = function (app) {
 
     var jwt = require('jwt-simple');
@@ -104,5 +104,4 @@ module.exports = function (app) {
 
     });
 
-};
-```         
+};        
