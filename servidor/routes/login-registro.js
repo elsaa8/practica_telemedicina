@@ -4,7 +4,7 @@ module.exports = function (app) {
     var jwt = require('jwt-simple');
     var clave = 'miSecretoMasOscuro';
 
-    const supabase = require("../conexion_supabase.js");
+    
 
     // LOGIN DE GESTORES
     app.post("/api/gestores/login", async function (req, res) {
