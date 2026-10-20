@@ -1,4 +1,4 @@
-```javascript
+
 module.exports = function (app) {
 
     // Importar la conexión de Supabase
@@ -21,4 +21,4 @@ module.exports = function (app) {
     });
 
 };
-```
+
