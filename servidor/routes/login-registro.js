@@ -105,10 +105,4 @@ module.exports = function (app) {
     });
 
 };
-```          
-            });
-        }
-    });
-
-
-};
+```         
