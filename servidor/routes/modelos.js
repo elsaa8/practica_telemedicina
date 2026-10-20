@@ -1,8 +1,6 @@
 
 module.exports = function (app) {
 
-    const supabase = require("../conexion_supabase.js");
-
     app.get("/api/modelos", async function (req, res) {
 
         const { data: modelos, error } = await supabase
