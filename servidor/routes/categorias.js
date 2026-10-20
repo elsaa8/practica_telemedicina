@@ -1,9 +1,6 @@
 
 module.exports = function (app) {
 
-    // Importar la conexión de Supabase
-    const supabase = require("../conexion_supabase.js");
-
     app.get("/api/categorias", async function (req, res) {
 
         const { data: categorias, error } = await supabase
