@@ -20,17 +20,17 @@ app.use("/ws", express.static("../cliente_ws"));
 // Cargo rutas
 
 // RUTAS PÚBLICAS 
-require("./routes/login-registro.js")(app);
+require("./routes/login-registro.js")(app, supabase);
 
 //A PARTIR DE AQUI CHECKEA EL TOKEN 
 require("./auth.js")(app);
 
-//PRIVADAS, HACE FALTA TOKEN Y TE LO VA A MIRAR 
-require("./routes/gestores.js")(app);
-require("./routes/categorias.js")(app);
-require("./routes/ubicaciones.js")(app);
-require("./routes/modelos.js")(app);
-require("./routes/recursos.js")(app);
+//PRIVADAS
+require("./routes/gestores.js")(app, supabase);
+require("./routes/categorias.js")(app, supabase);
+require("./routes/ubicaciones.js")(app, supabase);
+require("./routes/modelos.js")(app, supabase);
+require("./routes/recursos.js")(app, supabase);
 
 //establezco el puerto
 app.listen(3000);
