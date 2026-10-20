@@ -1,7 +1,7 @@
 
 module.exports = function (app) {
 
-    const supabase = require("../conexion_supabase.js");
+    
 
     app.put("/api/gestores/:id", async function (req, res) {
 
