@@ -1,16 +1,22 @@
+```javascript
 module.exports = function (app) {
 
-    var conexion = require("../conexion_mysql.js")
+    const supabase = require("../conexion_supabase.js");
 
-    app.get("/api/modelos", function (req, res) {
-        var sql = "SELECT * FROM modelos";
-        conexion.query(sql, function(err,modelos){
-            if(err){
-                res.status(500).json("Error al realizar la consulta");
-            }else{
-                res.status(200).json(modelos); 
-            }
-        });
-    }); 
+    app.get("/api/modelos", async function (req, res) {
+
+        const { data: modelos, error } = await supabase
+            .from("modelos")
+            .select("*");
+
+        if (error) {
+            console.log("Error al realizar la consulta", error);
+            return res.status(500).json("Error al realizar la consulta");
+        }
+
+        res.status(200).json(modelos);
+
+    });
 
 };
+```
