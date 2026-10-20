@@ -1,7 +1,7 @@
 
 module.exports = function (app) {
 
-    const supabase = require("../conexion_supabase.js");
+
 
     // GET: OBTENER TODOS LOS RECURSOS
     app.get("/api/recursos", async function (req, res) {
