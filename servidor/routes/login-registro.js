@@ -1,5 +1,5 @@
 
-module.exports = function (app) {
+module.exports = function (app,supabase) {
 
     var jwt = require('jwt-simple');
     var clave = 'miSecretoMasOscuro';
