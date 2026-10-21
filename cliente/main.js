@@ -81,8 +81,7 @@ function conseguirGets(callback){
 function cargarRanking(datos){
     var procesadas = procesarReservas(datos);
     var ordenadas = ordenar(procesadas);
-    var top5 = ordenadas.slice(0, 5);
-    var traducidas = traducir(top5);
+    var traducidas = traducir(ordenadas);
     imprimirtop5(traducidas);
 }
 
